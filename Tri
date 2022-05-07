@@ -1,0 +1,48 @@
+public class TriObj {
+	
+	public int poids;
+	public int utilite;
+	
+	public TriObj(int utilite,int poids) {
+		this.poids=poids;
+		this.utilite=utilite;
+	}
+	
+	public float calculRapport(int utilite, int poids) {
+		float resultat;
+		resultat=(float)utilite/poids;
+		return resultat;
+	}
+	
+	public static void tri(TriObj t[],int nombre) {
+		TriObj temp;
+		int n=nombre;
+		for(int i=0;i<n;++i)
+			for(int j=0;j<nombre-1;j++)
+				if(((float)t[j].utilite/t[j].poids)>(float)(t[j+1].utilite/t[j+1].poids)) {
+					temp=t[i];
+					t[i]=t[i+1];
+					t[i+1]=temp;
+					n--;
+				}
+		
+		for(int i=0;i<nombre;i++)
+			System.out.println("Objet "+(i+1)+": Rapport= "+t[i].calculRapport(t[i].utilite, t[i].poids));
+	}
+	
+	
+
+	public static void main(String[] args) {
+		TriObj o[]=new TriObj[3];
+		int nombre=o.length;
+		o[0]= new TriObj(8,3);
+		o[1]= new TriObj(16,7);
+		o[2]= new TriObj(20,9);
+		
+		System.out.println("trié: ");
+		tri(o,nombre);
+		
+
+	}
+
+}
